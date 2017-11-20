@@ -1,21 +1,58 @@
 var fs = require('fs');
 
-var userModel = require('../models/userModel');
+var User = require('../models/userModel');
+
+/**
+ * 插入
+ */
+function insert() {
+
+  var user = new User({
+    username: 'admin', //用户账号
+    password: '123', //密码
+    //最近登录时间
+  });
+
+  user.save(function (err, res) {
+
+    if (err) {
+      console.log("Error:" + err);
+    } else {
+      console.log("Res:" + res);
+    }
+
+  });
+}
+
+// insert();
 
 exports.login = (req, res) => {
-  debugger;
-  userModel.find({
-    name: req.name
-  }, function(err, docs) {
+
+  User.find({
+    'username': req.body.username
+  }, function (err, docs) {
+
     if (err) {
-      console.log(err);
-      return '登陆失败！';
+      return res.send({
+        ret: 0,
+        msg: '登陆失败！'
+      });
     } else {
-      console.log(docs);
-      if (req.pwd == docs.pwd) {
-        return '登陆成功！'
+      if (req.body.password == docs[0].password) {
+        let userData = [{
+          username: docs[0].username
+        }]
+
+        return res.send({
+          ret: 1,
+          userData: userData,
+          msg: '登陆成功！'
+        });
       } else {
-        return '登陆失败！'
+        return res.send({
+          ret: 0,
+          msg: '登陆失败！'
+        });
       }
     }
   });
