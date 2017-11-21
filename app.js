@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var db = require('./models/db.js');
 var router = require('./router/index');
+var user = require('./router/user');
 var bodyParser = require('body-parser')
 
 app.all('/*', function(req, res, next) {
@@ -16,7 +17,10 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+//登陆
 app.post('/login', router.login);
+//用户信息
+app.use('/user', user);
 
 app.listen(3000, () => {
   console.log('node server listen port 3000');

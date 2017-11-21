@@ -1,6 +1,15 @@
 var fs = require('fs');
-
+var express = require('express');
+var router = express.Router();
 var User = require('../models/userModel');
+
+var app = express();
+
+router.post('/list',query);
+router.post('/add',add);
+router.post('/update',update);
+router.post('/delete',deleteInfo);
+
 
 /**
  * 插入
@@ -66,3 +75,5 @@ exports.login = (req, res) => {
     }
   });
 }
+
+module.exports = router;
