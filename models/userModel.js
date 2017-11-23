@@ -5,7 +5,7 @@ var Schema = mongoose.Schema; //  创建模型
 var userScheMa = new Schema({
   area: String,
   city: String,
-  flag: number,
+  flag: Number,
   username: String,
   password: String,
   name: String,

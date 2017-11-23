@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 //登陆
 app.post('/login', router.login);
 //用户信息
-app.use('/user', user);
+app.use('/api/sys_users', user);
 
 app.listen(3000, () => {
   console.log('node server listen port 3000');
