@@ -33,7 +33,7 @@ function insert() {
   });
 }
 
-insert();
+// insert();
 
 exports.login = (req, res) => {
 

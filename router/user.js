@@ -36,50 +36,82 @@ function query(req, res) {
 }
 
 function add(req, res) {
-
-    User.insert({},function(err,){
-
+    console.log(req.body);
+    User.create(req.body,function(err,docs){
+        if(err){
+            console.log('ERR'+err);
+            return res.send(errMsg);
+        }
+        console.log('SUCC'+docs);
+        return res.send({
+            ret: 1,
+            id: docs.id,
+            msg: '添加成功！'
+        });
     });
 }
 
 function update(req, res) {
+    console.log('update id'+req.body.id);
+    User.findByIdAndUpdate(req.body.id,req.body,function(err,docs){
+        if(err){
+            console.log('ERR'+err);
+            return res.send(errMsg);
+        }
+        console.log('SUCC'+docs);
+        return res.send({
+            ret: 1,
+            msg: '修改成功！'
+        });
 
+    });
 }
 function deleteInfo(req, res) {
-
+    console.log('delete id'+req.body.id);
+    User.findByIdAndRemove(req.body.id,function(err,docs){
+        if(err){
+            console.log('ERR'+err);
+            return res.send(errMsg);
+        }
+        console.log('SUCC'+docs);
+        return res.send({
+            ret: 1,
+            msg: '删除成功！'
+        });
+    });
 }
 /**
  * 插入
  */
-function insert() {
+// function insert() {
 
-    var user = new User({
-        area: "蜀山区",
-        city: "合肥",
-        flag: 1,
-        username: 'user',
-        password: "123",
-        name: "李刚",
-        sex: "1",
-        duties: "String",
-        tel: "13088532653",
-        email: "772984752@163.com",
-        role: "ADMIN",
-        addr: 'hutongjiexxxx'
-    });
+//     var user = new User({
+//         area: "蜀山区",
+//         city: "合肥",
+//         flag: 1,
+//         username: 'user',
+//         password: "123",
+//         name: "李刚",
+//         sex: "1",
+//         duties: "String",
+//         tel: "13088532653",
+//         email: "772984752@163.com",
+//         role: "ADMIN",
+//         addr: 'hutongjiexxxx'
+//     });
 
-    user.save(function (err, res) {
+//     user.save(function (err, res) {
 
-        if (err) {
-            console.log("Error:" + err);
-        } else {
-            console.log("Res:" + res);
-        }
+//         if (err) {
+//             console.log("Error:" + err);
+//         } else {
+//             console.log("Res:" + res);
+//         }
 
-    });
-}
+//     });
+// }
 
-insert();
+// insert();
 
 
 module.exports = router;
