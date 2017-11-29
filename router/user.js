@@ -83,33 +83,33 @@ function deleteInfo(req, res) {
 /**
  * 插入
  */
-// function insert() {
+function insert() {
 
-//     var user = new User({
-//         area: "蜀山区",
-//         city: "合肥",
-//         flag: 1,
-//         username: 'user',
-//         password: "123",
-//         name: "李刚",
-//         sex: "1",
-//         duties: "String",
-//         tel: "13088532653",
-//         email: "772984752@163.com",
-//         role: "ADMIN",
-//         addr: 'hutongjiexxxx'
-//     });
+    var user = new User({
+        area: "蜀山区",
+        city: "合肥",
+        flag: 1,
+        username: 'user',
+        password: "123",
+        name: "李刚",
+        sex: "1",
+        duties: "String",
+        tel: "13088532653",
+        email: "772984752@163.com",
+        role: "ADMIN",
+        addr: 'hutongjiexxxx'
+    });
 
-//     user.save(function (err, res) {
+    user.save(function (err, res) {
 
-//         if (err) {
-//             console.log("Error:" + err);
-//         } else {
-//             console.log("Res:" + res);
-//         }
+        if (err) {
+            console.log("Error:" + err);
+        } else {
+            console.log("Res:" + res);
+        }
 
-//     });
-// }
+    });
+}
 
 // insert();
 
